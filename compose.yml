@@ -12,5 +12,18 @@ services:
     environment:
       - JENKINS_OPTS="--httpPort=8080"
 
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - nginx-proxy-manager-data:/data
+      - nginx-proxy-manager-letsencrypt:/etc/letsencrypt
+    restart: always
+
 volumes:
   jenkins_home:
+  nginx-proxy-manager-data:
+  nginx-proxy-manager-letsencrypt:
